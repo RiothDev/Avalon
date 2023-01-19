@@ -88,7 +88,7 @@ def main():
 
         try:
             link = await interaction.channel.create_invite(max_age=300)
-            print(link)
+            print("> Invite : {}".format(link))
         except:
             pass
 
