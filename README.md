@@ -4,6 +4,8 @@
 
 - My first bot made by reading the discord.py documentation
 
+- Remember to use "pip install -r requirements.txt" in the cmd before using the code!
+
 # Commands
 
 **/play**
